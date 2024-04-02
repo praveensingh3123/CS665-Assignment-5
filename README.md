@@ -1,5 +1,3 @@
-# CS665-Assignment-5
-
 # Name: Praveen Singh
 # Date: 04/01/2024
 # Course: Spring 2024
