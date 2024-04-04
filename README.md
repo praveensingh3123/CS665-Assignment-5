@@ -13,9 +13,9 @@ This document outlines the usage of various design patterns in the JUnit 4 proje
 - `TestCase`
 
 ### Collaboration and Functioning
-- `TestCase` uses the Template Method pattern through the `runBare()` method, which outlines the structure of executing a test.
-- This method calls `setUp()` to set up the test environment, `runTest()` to execute the test, and `tearDown()` to clean up after the test.
-- Subclasses of `TestCase` can override `setUp()` and `tearDown()` to provide specific behaviors while maintaining the overall test execution structure.
+- The `runBare()` method in `TestCase` employs the Template Method pattern by outlining the steps involved in running a test.
+- This function runs `runTest()` to run the test, `tearDown()` to clean up after the test, and `setUp()` to set up the test environment.
+- `setUp()` and `tearDown()` can be overridden by `TestCase` subclasses to offer particular behaviours while preserving the general framework of test execution.
 
 ### Extensibility
 - New test cases can be created by extending `TestCase` and overriding necessary methods, allowing for custom setup and teardown processes while reusing the overall test execution algorithm.
@@ -23,14 +23,16 @@ This document outlines the usage of various design patterns in the JUnit 4 proje
 ## 1. Composite Pattern
 
 ### Relevant Classes/Interfaces
-- `Test`: The component interface.
-- `TestCase`: Leaf in the composite structure representing individual tests.
-- `TestSuite`: Composite class that can contain `TestCase` or other `TestSuite` objects.
+- `Test`: Interface of the component.
+- `TestCase`: The leaf that represents each particular test in the composite structure.
+- The composite class `TestSuite` has the ability to hold `TestCase` and additional `TestSuite` objects.
+
 
 ### Collaboration and Functioning
-- `Test` provides the common interface for individual tests and test suites, with methods like `countTestCases()` and `run(TestResult result)`.
-- `TestCase` implements `Test` and represents a single test.
-- `TestSuite` aggregates multiple `Test` instances, handling them uniformly. When `run()` is called on a `TestSuite`, it delegates the call to each of its `Test` instances.
+- With functions like `countTestCases()` and `run(TestResult result)`, `Test` offers the common interface for individual tests and test suites.
+- `TestCase` represents a single test that implements `Test`.
+- `TestSuite` handles numerous `Test` instances consistently by aggregating them. A `TestSuite's` `run()` function assigns the call to each of its `Test` instances.
+
 
 ### Extensibility
 - New test types can be easily added by implementing the `Test` interface, demonstrating the flexibility and scalability of the Composite pattern.
@@ -42,8 +44,9 @@ This document outlines the usage of various design patterns in the JUnit 4 proje
 - `Protectable`: Strategy interface.
 
 ### Collaboration and Functioning
-- `TestResult` uses `Protectable` strategies to run test code. The `runProtected()` method in `TestResult` accepts a `Protectable` object, allowing different test execution behaviors to be encapsulated within `Protectable` implementations.
-- `Protectable` provides a single method `protect()` that encapsulates the test execution logic.
+- `TestResult` runs test code using `Protectable` techniques. `Protectable} objects are accepted by the `runProtected()` method in `TestResult}, which enables the encapsulation of various test execution behaviours within `Protectable` implementations.
+- The test execution logic is contained in the single method `protect()` that `Protectable` offers.
+
 
 ### Extensibility
 - Different test execution behaviors can be introduced by implementing new `Protectable` strategies, offering flexibility in how test code is executed within the `TestResult` context.
